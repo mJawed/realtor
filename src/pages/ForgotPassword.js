@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-function SignUp() {
+function ForgotPassword() {
     return ( 
-
+        <>
         <section>
         <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
 
@@ -17,16 +17,6 @@ function SignUp() {
 
 
        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-
-
-       <input
-              type="text"
-              id="name"
-             
-              placeholder="Full name"
-              className="mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
-            />
-
        <form method="post">
            <input
              type="email"
@@ -35,33 +25,23 @@ function SignUp() {
              placeholder="Email address"
              className="mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
            />
-           <div className="relative mb-6">
-             <input
-              type='password'
-               id="password"
-               
-               placeholder="Password"
-               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
-             />
-            
-           
-           </div>
+          
            <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
              <p className="mb-6">
-               Have an account?
+               Don't have a account?
                <Link
-                 to="/sign-in"
+                 to="/sign-up"
                  className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out ml-1"
                >
-                 Sign in
+                 Register
                </Link>
              </p>
              <p>
                <Link
-                 to="/forgot-password"
+                 to="/sign-in"
                  className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out"
                >
-                 Forgot password?
+                 Sign in instead
                </Link>
              </p>
            </div>
@@ -69,7 +49,7 @@ function SignUp() {
              className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
              type="submit"
            >
-             Sign Up
+             Send reset email
            </button>
            <div className="flex items-center  my-4 before:border-t before:flex-1 before:border-gray-300 after:border-t after:flex-1 after:border-gray-300">
              <p className="text-center font-semibold mx-4">OR</p>
@@ -82,7 +62,10 @@ function SignUp() {
 
         </div>
         </section>
+       
+       </>
+      
      );
 }
 
-export default SignUp;
+export default ForgotPassword;
