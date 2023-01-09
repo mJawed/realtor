@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import OAuth from "../components/OAuth";
 
 function ForgotPassword() {
     return ( 
         <>
         <section>
-        <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
+        <h1 className="text-3xl text-center mt-6 font-bold">Forgot Password</h1>
 
         <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
@@ -54,6 +55,8 @@ function ForgotPassword() {
            <div className="flex items-center  my-4 before:border-t before:flex-1 before:border-gray-300 after:border-t after:flex-1 after:border-gray-300">
              <p className="text-center font-semibold mx-4">OR</p>
            </div>
+
+           <OAuth/>
         
          </form>
 
