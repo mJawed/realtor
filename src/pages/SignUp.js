@@ -5,6 +5,10 @@ import{AiFillEyeInvisible} from'react-icons/ai';
 import{AiFillEye} from'react-icons/ai'
 import OAuth from "../components/OAuth";
 
+import{getAuth,createUserWithEmailAndPassword} from'firebase/auth'
+
+import{db} from'../firebase' 
+
 function SignUp() {
 
     const[showPassword, setShowPassword]=useState(true)
@@ -27,10 +31,25 @@ function SignUp() {
 
     const formdata = {fullName,userEmail,userPassword}
   //Signup State end
-    function SubmiHandle(e){
+   async function  SubmiHandle(e){
         e.preventDefault()
     
         console.log(formdata)
+        
+
+        try {
+
+          const auth = getAuth();
+          const userCredential = await createUserWithEmailAndPassword(auth, userEmail, userPassword)
+          const user = userCredential.user;
+          console.log(user)
+          
+        } catch (error) {
+console.log(error)
+          //const errorCode = error.code;
+          //const errorMessage = error.message;
+          
+        }
 
 
     }
