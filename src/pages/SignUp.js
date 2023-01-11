@@ -67,9 +67,22 @@ const navigate = useNavigate();
 
     } catch (error) {
       console.log(error)
+
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      if(errorCode === 'auth/email-already-in-use'){
+       console.log('email already in use')
+       toast.error('Email already in use');
+      }else{
+        console.log('mene pakda nahi')
+
+      }
+
+      
       //const errorCode = error.code;
       //const errorMessage = error.message;
-      toast.error('something is wrong here');
+      //toast.error('something is wrong here');
 
     }
 
