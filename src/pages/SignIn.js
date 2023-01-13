@@ -1,7 +1,59 @@
-import { Link } from "react-router-dom";
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import OAuth from "../components/OAuth";
 
+
 function Signin() {
+  const navigate = useNavigate()
+
+  const[userEmail, setuserEmail] =useState("")
+  const[userPassword, setuserPassword] =useState("")
+   const formdata = {userEmail,userPassword} 
+
+   
+
+ 
+
+  async function handleSubmit(e){
+    e.preventDefault()
+
+    console.log(formdata)
+
+    try {
+
+      const auth = getAuth()
+      const userCredentials = await signInWithEmailAndPassword(auth, userEmail,userPassword)
+
+   
+
+      if(userCredentials.user){
+
+        console.log(userCredentials.user)
+
+        console.log('Successfully login man, love you')
+
+        toast.success('Successfully Logeed in')
+
+        navigate('/')
+
+      }else{
+        console.log("something wrong here")
+      }
+      
+    } catch (error) {
+      console.log(error)
+
+      toast.error('Kuch to galat Hai')
+     
+      
+    }
+
+
+
+  }
 
 
     return ( 
@@ -20,21 +72,24 @@ function Signin() {
 
 
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20">
-        <form method="post">
+        <form method="post" onSubmit={handleSubmit}>
             <input
               type="email"
               id="email"
-           
               placeholder="Email address"
               className="mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
+            value={userEmail}
+            onChange={(e)=>{setuserEmail(e.target.value)}}
             />
             <div className="relative mb-6">
               <input
                type='password'
                 id="password"
-                
+              
                 placeholder="Password"
                 className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
+                value={userPassword}
+                onChange={(e)=>{setuserPassword(e.target.value)}}
               />
              
             
