@@ -38,7 +38,16 @@ if(!docSnap.exists()){
 
 }
 toast.success('Successfully Signup')
-navigate('/')
+navigate('/profile')
+
+
+localStorage.setItem('LoginUser',user.displayName);
+localStorage.setItem('loginStatus',1)
+
+if(localStorage.getItem('loginStatus') === 1){
+  navigate('/profile')
+}
+
 
   } catch (error) {
     console.log(error)

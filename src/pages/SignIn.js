@@ -1,6 +1,6 @@
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { useState,useEffect } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import OAuth from "../components/OAuth";
@@ -15,7 +15,22 @@ function Signin() {
 
    
 
- 
+   useEffect(() => {
+    const auth = getAuth();
+    console.log(auth);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log('me login hu')
+        navigate('/profile')
+
+      }else{
+        console.log('nahi me me login nahi hu')
+      }
+    
+    });
+  }, []);
+
+
 
   async function handleSubmit(e){
     e.preventDefault()
@@ -27,17 +42,20 @@ function Signin() {
       const auth = getAuth()
       const userCredentials = await signInWithEmailAndPassword(auth, userEmail,userPassword)
 
-   
+   console.log(auth)
 
       if(userCredentials.user){
 
-        console.log(userCredentials.user)
+        console.log(userCredentials.userEmail)
 
         console.log('Successfully login man, love you')
 
         toast.success('Successfully Logeed in')
 
-        navigate('/')
+        navigate('/profile')
+
+        localStorage.setItem('LoginUser',userCredentials.user.displayName);
+        localStorage.setItem('loginStatus',1)
 
       }else{
         console.log("something wrong here")

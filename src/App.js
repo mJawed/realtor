@@ -7,19 +7,30 @@ import Offers from './pages/Offers';
 import Profile from './pages/Profile';
 import Signin from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import { ToastContainer, toast } from 'react-toastify';
+import {LoginContext} from "./components/LoginContext";
+import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PrivateRoute from './components/PrivateRoute';
+import { useState } from 'react';
 
 function App() {
+
+
+  const[LoginName, SetLoginName]= useState(localStorage.getItem('LoginUser'));
+  const [loginStatus,setLoginStatus]= useState(localStorage.getItem('LoginStatus'))
+
   return ( 
 <>
 <Router>
+  <LoginContext.Provider value={{LoginName,SetLoginName,loginStatus,setLoginStatus}}>
 
   <Header/>
 <Routes>
 
 <Route path='/' element={<Home/>}/>
+<Route path='/profile' element={<PrivateRoute/>}>
 <Route path='/profile' element={<Profile/>}/>
+</Route>
 <Route path='/offers' element={<Offers/>}/>
 <Route path='/sign-in' element={<Signin/>}/>
 <Route path='/sign-up' element={<SignUp/>}/>
@@ -30,7 +41,7 @@ function App() {
 
 <Footer/>
 
-
+</LoginContext.Provider>
 </Router>
 
 
