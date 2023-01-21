@@ -7,7 +7,7 @@ import Offers from './pages/Offers';
 import Profile from './pages/Profile';
 import Signin from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import {LoginContext} from "./components/LoginContext";
+import {LoginContext} from "./LoginContext";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './components/PrivateRoute';

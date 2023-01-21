@@ -33,6 +33,8 @@ const[updateData,setupdateData]=useState(false)
 
 function handleLogout (){
   auth.signOut()
+  localStorage.removeItem('LoginUser');
+  localStorage.removeItem('loginStatus');
 navigate('/')
 }
 
